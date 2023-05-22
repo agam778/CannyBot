@@ -1,0 +1,26 @@
+{
+  "name": "cannybot-tg",
+  "version": "1.0.0",
+  "description": "A fun bot, made with grammY",
+  "main": "bot.js",
+  "repository": "https://github.com/agam778/CannyBot-TG",
+  "author": "Agampreet Singh",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node bot.js",
+    "debug": "nodemon bot.js"
+  },
+  "dependencies": {
+    "@roziscoding/grammy-autoquote": "^1.1.2",
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "grammy": "^1.16.0",
+    "randomstring": "^1.2.3"
+  },
+  "packageManager": "yarn@3.5.1",
+  "devDependencies": {
+    "@types/node": "^20.2.3"
+  }
+}
