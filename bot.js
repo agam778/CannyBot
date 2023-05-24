@@ -84,5 +84,7 @@ process.on("SIGINT", () => {
   process.exit(0);
 });
 
+require("./webserver");
+
 console.log("Starting CannyBot...");
 bot.start();
