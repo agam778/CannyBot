@@ -12,7 +12,7 @@ module.exports = {
     const { text } = message;
 
     if (!text.includes(" ")) {
-      await reply("Please provide a username");
+      await ctx.reply("Please provide a username");
       return;
     }
 
@@ -54,7 +54,7 @@ module.exports = {
         fs.unlinkSync(path);
       }, 10000);
     } catch (error) {
-      await reply(
+      await ctx.reply(
         "Oops, an error occurred!\n\nPossible reasons:\n• User not found\n• Rate limit exceeded"
       );
     }
