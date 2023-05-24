@@ -1,12 +1,11 @@
 {
-  "name": "cannybot-tg",
+  "name": "cannybot",
   "version": "1.0.0",
   "description": "A fun bot, made with grammY",
   "main": "bot.js",
-  "repository": "https://github.com/agam778/CannyBot-TG",
+  "repository": "https://github.com/agam778/CannyBot",
   "author": "Agampreet Singh",
-  "license": "MIT",
-  "private": true,
+  "license": "GPL-3.0",
   "scripts": {
     "start": "node bot.js",
     "debug": "nodemon bot.js"
