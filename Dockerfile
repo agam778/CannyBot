@@ -17,5 +17,8 @@ RUN corepack enable
 RUN yarn
 RUN yarn install
 
+# Make the "downloads" folder in the bot's directory.
+RUN mkdir -p /usr/src/bot/downloads
+
 # Start the bot.
 CMD ["yarn", "start"]
