@@ -126,7 +126,7 @@ __metadata:
     dotenv: ^16.0.3
     express: ^4.18.2
     fs: ^0.0.1-security
-    grammy: ^1.16.0
+    grammy: ^1.16.1
     randomstring: ^1.2.3
   languageName: unknown
   linkType: soft
@@ -369,7 +369,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grammy@npm:^1.16.0":
+"grammy@npm:^1.16.1":
   version: 1.16.1
   resolution: "grammy@npm:1.16.1"
   dependencies:
