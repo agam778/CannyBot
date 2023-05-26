@@ -46,7 +46,7 @@ bot.catch((err) => {
   const e = err.error;
   const commandText = ctx.message.text;
   const chatTitle = ctx.chat.title;
-  const errorMessage = `Command: <code>${commandText}</code>\n\nGroup: <code>${chatTitle}</code>\n\nError: <code>${e}</code>`;
+  const errorMessage = `Command: <code>${commandText}</code>\n\nGroup: <code>${chatTitle}</code>\n\nUser: ${ctx.from.first_name} ${ctx.from.last_name || ""} (@${ctx.from.username || ""})\n\nError: <code>${e}</code>`;
 
   if (e instanceof GrammyError) {
     ctx.api.sendMessage(logchannel, `Error in request:\n\n${errorMessage}`, {
