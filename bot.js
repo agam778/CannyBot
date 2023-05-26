@@ -17,6 +17,23 @@ if (!process.env.BOT_TOKEN) {
 
 const logchannel = process.env.LOG_CHANNEL;
 
+function logCommand(ctx) {
+  if (process.env.LOG_COMMANDS === "true") {
+    const commandText = ctx.message.text;
+    const chatTitle = ctx.chat.title;
+    const userFirstName = ctx.from.first_name;
+    const userLastName = ctx.from.last_name || "";
+    const username = ctx.from.username || "";
+
+    const logMessage = `Command: <code>${commandText}</code>\n\nGroup: <code>${chatTitle}</code>\n\nUser: ${userFirstName} ${userLastName} (@${username})`;
+
+    ctx.api.sendMessage(logchannel, logMessage, {
+      parse_mode: "HTML",
+      chat_id: logchannel,
+    });
+  }
+}
+
 const bot = new Bot(process.env.BOT_TOKEN);
 bot.use(autoQuote);
 
@@ -26,10 +43,16 @@ const commandFiles = fs
   .filter((file) => file.endsWith(".js"));
 for (const file of commandFiles) {
   const command = require(path.join(commandFilesDir, file));
-  bot.command(command.name, command.handler);
+  bot.command(command.name, (ctx) => {
+    logCommand(ctx);
+    command.handler(ctx);
+  });
   if (command.alias) {
     for (const alias of command.alias) {
-      bot.command(alias, command.handler);
+      bot.command(alias, (ctx) => {
+        logCommand(ctx);
+        command.handler(ctx);
+      });
     }
   }
 }
