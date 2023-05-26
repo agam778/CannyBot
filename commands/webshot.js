@@ -51,6 +51,8 @@ module.exports = {
     const ssurl = `https://api.site-shot.com/?url=${url2}&userkey=${process.env.SITE_SHOT_API_KEY}&width=1280&height=720`;
     const path = __dirname + `/../downloads/${randomchar}.png`;
 
+    try {
+
     const response = await axios({
       method: "get",
       url: ssurl,
@@ -71,5 +73,8 @@ module.exports = {
         fs.unlinkSync(path);
       }, 10000);
     });
+    } catch (err) {
+      await ctx.reply("Oops! An error occurred.\n\nPossible reasons:\n• The website is not accessible\n• The website is not responding\n• Something else went wrong");
+    }
   },
 };
