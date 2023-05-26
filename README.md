@@ -36,6 +36,7 @@ The environment variables are present in `sample.env`, rename it to `.env` and f
 
 - BOT_TOKEN: The token of your bot, get it from @BotFather
 - LOG_CHANNEL: The ID of the channel/group where the logs will be sent if an error occurs when a command is executed
+- LOG_COMMANDS: Set it to `true` if you want to log every command that is executed
 - SITE_SHOT_API_KEY: Needed by the webshot command, get it from [here](https://site-shot.com/)
 
 ## Self host:
