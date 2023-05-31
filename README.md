@@ -44,6 +44,9 @@ The environment variables are present in `sample.env`, rename it to `.env` and f
 Install Dependencies: Run `yarn; yarn install`<br>
 Run the Bot: Run `yarn start`
 
+# Credits
+- [ios7jbpro](https://github.com/ios7jbpro) for the copypastas (used in /copypasta)
+
 # License
 
 CannyBot is licensed under the GPL 3.0 license. See the [`LICENSE`](./LICENSE) file for more information.
