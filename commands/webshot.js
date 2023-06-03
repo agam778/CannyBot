@@ -1,11 +1,10 @@
-const axios = require('axios')
-const { createReadStream } = require('fs')
-const fs = require('fs')
+const { unlinkSync, createReadStream } = require('fs')
 const { InputFile } = require('grammy')
 const randomstring = require('randomstring')
+const puppeteer = require('puppeteer')
 
 function escapeHtml(text) {
-  var map = {
+  const map = {
     '&': '&amp;',
     '<': '&lt;',
     '>': '&gt;',
@@ -19,9 +18,7 @@ function escapeHtml(text) {
     '^': '%5E',
   }
 
-  return text.replace(/[&<>"'#?*$@^]/g, function (m) {
-    return map[m]
-  })
+  return text.replace(/[&<>"'#?*$@^]/g, (m) => map[m])
 }
 
 module.exports = {
@@ -46,35 +43,29 @@ module.exports = {
       charset: 'alphabetic',
     })
 
-    const url = encodeURI(text.substring(9))
-    const url2 = escapeHtml(url)
-    const ssurl = `https://api.site-shot.com/?url=${url2}&userkey=${process.env.SITE_SHOT_API_KEY}&width=1280&height=720`
-    const path = __dirname + `/../downloads/${randomchar}.png`
+    const url = escapeHtml(encodeURI(text.substring(text.indexOf(' ') + 1)))
+    const screenshotPath = `${__dirname}/../downloads/${randomchar}.png`
 
     try {
-      const response = await axios({
-        method: 'get',
-        url: ssurl,
-        responseType: 'stream',
-      })
-      const writer = fs.createWriteStream(path)
-      response.data.pipe(writer)
+      const browser = await puppeteer.launch({ headless: true })
+      const page = await browser.newPage()
+      await page.goto(url)
 
-      writer.on('finish', async () => {
-        await ctx.replyWithPhoto(new InputFile(path), {
-          caption:
-            "Here's your screenshot!" +
-            '\n' +
-            'Requested by @' +
-            ctx.from.username,
-        })
-        setTimeout(() => {
-          fs.unlinkSync(path)
-        }, 10000)
-      })
-    } catch (err) {
+      await page.setViewport({ width: 1920, height: 1080 })
+
+      await page.screenshot({ path: screenshotPath })
+      await browser.close()
+
+      const screenshotStream = createReadStream(screenshotPath)
+      const inputScreenshot = new InputFile(screenshotStream)
+
+      await ctx.replyWithPhoto(inputScreenshot)
+
+      unlinkSync(screenshotPath)
+    } catch (error) {
+      console.error('An error occurred:', error)
       await ctx.reply(
-        'Oops! An error occurred.\n\nPossible reasons:\n• The website is not accessible\n• The website is not responding\n• Something else went wrong'
+        'Oops, an error occurred!\n\nPossible reasons:\n• Invalid URL\n• Website is not reachable\n• Something else went wrong'
       )
     }
   },
