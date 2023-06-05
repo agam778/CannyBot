@@ -1,5 +1,4 @@
 const axios = require('axios')
-const { createReadStream } = require('fs')
 const fs = require('fs')
 const { InputFile } = require('grammy')
 const randomstring = require('randomstring')
@@ -48,7 +47,7 @@ module.exports = {
 
     const url = encodeURI(text.substring(9))
     const url2 = escapeHtml(url)
-    const ssurl = `https://api.site-shot.com/?url=${url2}&userkey=${process.env.SITE_SHOT_API_KEY}&width=1280&height=720`
+    const ssurl = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASHKEY}&url=${url2}&width=1920&height=1080`
     const path = __dirname + `/../downloads/${randomchar}.png`
 
     try {
