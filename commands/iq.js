@@ -1,3 +1,19 @@
+const fs = require('fs')
+
+let iqData = {}
+let iqDataFile = __dirname + '/../downloads/iqData.json'
+
+try {
+  if (!fs.existsSync(iqDataFile)) {
+    fs.writeFileSync(iqDataFile, '{}', 'utf-8')
+  }
+
+  const iqDataFileContents = fs.readFileSync(iqDataFile, 'utf-8')
+  iqData = JSON.parse(iqDataFileContents)
+} catch (error) {
+  console.error('Error loading IQ data:', error)
+}
+
 module.exports = {
   name: 'iq',
   description: "Check your/someone's IQ",
@@ -6,7 +22,22 @@ module.exports = {
     const { message } = ctx
     const { text, from } = message
 
-    let iq = Math.floor(Math.random() * 301) - 100
+    let username = text.substring(text.indexOf(' ') + 1)
+    if (
+      username.includes(
+        '/iq' || username.includes(`/iq@${ctx.botInfo.username}`)
+      )
+    ) {
+      username = from.id.toString()
+    }
+
+    let iq = iqData[username]
+    if (iq === undefined) {
+      iq = Math.floor(Math.random() * 301) - 100
+      iqData[username] = iq
+
+      fs.writeFileSync(iqDataFile, JSON.stringify(iqData), 'utf-8')
+    }
 
     let response = ''
 
