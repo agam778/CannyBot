@@ -55,9 +55,7 @@ async function sendPackageInfo(ctx, packageData) {
   const pkgdesc = packageData.pkgdesc || packageData.Description
   const pkgver = packageData.pkgver || packageData.Version
   const maintainers = packageData.maintainers || packageData.Maintainer
-  const url = packageData.pkgname
-    ? `https://archlinux.org/packages/${pkgname}`
-    : `https://aur.archlinux.org/packages/${pkgname}`
+  const url = packageData.url || packageData.URL
 
   await ctx.reply(
     `<b>Package:</b> <code>${pkgname}</code>\n<b>Description:</b> ${pkgdesc}\n<b>Version:</b> <code>${pkgver}</code>\n<b>Maintainer:</b> ${maintainers}\n<b>URL:</b> ${url}`,
