@@ -17,6 +17,11 @@ if (!botToken) {
   throw new Error('BOT_TOKEN not set in environment variables! Exiting...')
 }
 
+const ownerId = process.env.OWNERID
+if (!ownerId) {
+  throw new Error('OWNERID not set in environment variables! Exiting...')
+}
+
 function logCommand(ctx) {
   if (process.env.LOG_COMMANDS === 'true') {
     const commandText = ctx.message.text
@@ -47,6 +52,10 @@ async function start() {
     const command = require(path.join(commandFilesDir, file))
     bot.command(command.name, async (ctx) => {
       logCommand(ctx)
+      if (command.ownercmd == true && ctx.from.id.toString() !== ownerId) {
+        await ctx.reply('Sorry, this command is only available to the owner.')
+        return
+      }
       await command.handler(ctx)
     })
 
@@ -54,6 +63,12 @@ async function start() {
       for (const alias of command.alias) {
         bot.command(alias, async (ctx) => {
           logCommand(ctx)
+          if (command.ownercmd && ctx.from.id.toString() !== ownerId) {
+            await ctx.reply(
+              'Sorry, this command is only available to the owner.'
+            )
+            return
+          }
           await command.handler(ctx)
         })
       }
