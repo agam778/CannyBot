@@ -53,7 +53,7 @@ module.exports = {
     } else if (iq < 80) {
       response +=
         "\n\nHmmm... Looks like they'll have to get a new brain from AliExpress. 🤡"
-    } else if (iq < 120) {
+    } else if (iq < 130) {
       response += "\n\nNot bad, but they're not a genius either. 👎"
     } else {
       response += '\n\nHmm! Looks like we have a nerd over here. 🤓'
