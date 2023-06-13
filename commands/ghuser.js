@@ -6,6 +6,8 @@ const randomstring = require('randomstring')
 module.exports = {
   name: 'ghuser',
   description: 'Get info about a GitHub user',
+  usage: '/ghuser <username>',
+  example: '/ghuser agam778',
   category: 'Git Utilities',
   handler: async (ctx) => {
     const { message } = ctx

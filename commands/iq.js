@@ -17,6 +17,8 @@ try {
 module.exports = {
   name: 'iq',
   description: "Check your/someone's IQ",
+  usage: '/iq OR /iq <name>',
+  example: '/iq OR /iq agam778',
   category: 'Fun',
   handler: async (ctx) => {
     const { message } = ctx

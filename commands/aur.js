@@ -5,6 +5,8 @@ module.exports = {
   name: 'aur',
   alias: ['pacman'],
   description: 'Get info about an AUR/pacman package',
+  usage: '/aur <package>',
+  example: '/aur ms-365-electron-bin',
   category: 'Utilities',
   handler: async (ctx) => {
     const { message } = ctx

@@ -28,6 +28,8 @@ const responses = [
 module.exports = {
   name: '8ball',
   description: 'Ask the magic 8-ball a question',
+  usage: '/8ball <question>',
+  example: '/8ball Is this bot awesome?',
   category: 'Fun',
   handler: async (ctx) => {
     const { message } = ctx

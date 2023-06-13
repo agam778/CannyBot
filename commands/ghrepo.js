@@ -4,6 +4,8 @@ const { InlineKeyboard } = require('grammy')
 module.exports = {
   name: 'ghrepo',
   description: 'Get info about a GitHub repository',
+  usage: '/ghrepo <repo>',
+  example: '/ghrepo RealmeInfoBot',
   category: 'Git Utilities',
   handler: async (ctx) => {
     const { message } = ctx

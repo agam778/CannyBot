@@ -4,6 +4,8 @@ const { InlineKeyboard } = require('grammy')
 module.exports = {
   name: 'magisk',
   description: 'Get the latest Magisk releases',
+  usage: '/magisk OR /magisk <stable|beta|canary>',
+  example: '/magisk OR /magisk stable',
   category: 'Utilities',
   handler: async (ctx) => {
     try {

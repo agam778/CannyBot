@@ -26,6 +26,8 @@ function escapeHtml(text) {
 module.exports = {
   name: 'webshot',
   description: 'Take a screenshot of a website',
+  usage: '/webshot <url>',
+  example: '/webshot https://google.com',
   category: 'Utilities',
   handler: async (ctx) => {
     const { message } = ctx

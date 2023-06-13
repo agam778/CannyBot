@@ -4,6 +4,8 @@ const { InlineKeyboard } = require('grammy')
 module.exports = {
   name: 'pip',
   description: 'Get info about a pip package',
+  usage: '/pip <package>',
+  example: '/pip requests',
   category: 'Utilities',
   handler: async (ctx) => {
     const { message } = ctx

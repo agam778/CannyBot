@@ -5,6 +5,8 @@ module.exports = {
   name: 'npm',
   alias: ['yarn'],
   description: 'Get info about a npm/yarn package',
+  usage: '/npm <package>',
+  example: '/npm grammy',
   category: 'Utilities',
   handler: async (ctx) => {
     const { message } = ctx

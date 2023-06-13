@@ -4,6 +4,8 @@ const { InlineKeyboard } = require('grammy')
 module.exports = {
   name: 'meme',
   description: 'Sends a random meme from Reddit',
+  usage: '/meme',
+  example: '/meme',
   category: 'Fun',
   handler: async (ctx) => {
     try {
