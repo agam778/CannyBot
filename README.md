@@ -11,6 +11,7 @@ CannyBot is an Open Source Telegram bot written in [grammY](http://grammy.dev). 
 - /magisk - Get the latest Magisk releases
 - /npm, /yarn - Get info about a npm/yarn package
 - /pip - Get info about a pip package
+- /search - Search for a query in multiple search engines
 - /webshot - Take a screenshot of a website
 
 <b>Git Utilities:</b>
