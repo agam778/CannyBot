@@ -19,7 +19,7 @@
     "grammy": "^1.16.1",
     "randomstring": "^1.2.3"
   },
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.6.1",
   "devDependencies": {
     "@types/node": "^20.2.3"
   }
