@@ -5,10 +5,10 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@grammyjs/types@npm:3.1.2":
-  version: 3.1.2
-  resolution: "@grammyjs/types@npm:3.1.2"
-  checksum: afbf678ca14079e16d37c7b721c90eb90a5d18110b331e49980b4f88966c85995ce1b97a0c64226949f1bdd208ce8b62b348a9b2d2197c2c98ec1925697e752a
+"@grammyjs/types@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@grammyjs/types@npm:3.1.1"
+  checksum: d699c8a3bf71522f0e369cc47e885fdbd5586d93e6ca402bdc76e919b15e8eb95199b1c0ffb0920759b341bb8f2c72c477d084690b4478d1152ea589299acc8a
   languageName: node
   linkType: hard
 
@@ -22,9 +22,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^20.2.3":
-  version: 20.4.2
-  resolution: "@types/node@npm:20.4.2"
-  checksum: 99e544ea7560d51f01f95627fc40394c24a13da8f041121a0da13e4ef0a2aa332932eaf9a5e8d0e30d1c07106e96a183be392cbba62e8cf0bf6a085d5c0f4149
+  version: 20.3.1
+  resolution: "@types/node@npm:20.3.1"
+  checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
   languageName: node
   linkType: hard
 
@@ -121,6 +121,7 @@ __metadata:
     fs: ^0.0.1-security
     grammy: ^1.16.1
     randomstring: ^1.2.3
+    urban: ^0.3.4
   languageName: unknown
   linkType: soft
 
@@ -130,6 +131,13 @@ __metadata:
   dependencies:
     delayed-stream: ~1.0.0
   checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
+  languageName: node
+  linkType: hard
+
+"commander@npm:>=0.3.0":
+  version: 11.0.0
+  resolution: "commander@npm:11.0.0"
+  checksum: 6621954e1e1d078b4991c1f5bbd9439ad37aa7768d6ab4842de1dbd4d222c8a27e1b8e62108b3a92988614af45031d5bb2a2aaa92951f4d0c934d1a1ac564bb4
   languageName: node
   linkType: hard
 
@@ -363,14 +371,14 @@ __metadata:
   linkType: hard
 
 "grammy@npm:^1.16.1":
-  version: 1.17.2
-  resolution: "grammy@npm:1.17.2"
+  version: 1.16.2
+  resolution: "grammy@npm:1.16.2"
   dependencies:
-    "@grammyjs/types": 3.1.2
+    "@grammyjs/types": 3.1.1
     abort-controller: ^3.0.0
     debug: ^4.3.4
-    node-fetch: ^2.6.11
-  checksum: 36cbffd0409139f85645e7aed47536f8b225e71984ce07508111be2bf13ebad6553467c4df745ccbcdeefb17fbb524c00c9115157b7341331ed39b89e64b5469
+    node-fetch: ^2.6.9
+  checksum: 7d34962ae0a91eeb092dddaeb1ccc01ec5952870b77bc77313b8cc32fad67a176398aae1d859ce50dc32dc09b7c1331c12f0db53e853996ec47748fd0c44506d
   languageName: node
   linkType: hard
 
@@ -507,7 +515,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.11":
+"node-fetch@npm:^2.6.9":
   version: 2.6.11
   resolution: "node-fetch@npm:2.6.11"
   dependencies:
@@ -714,6 +722,17 @@ __metadata:
   version: 1.0.0
   resolution: "unpipe@npm:1.0.0"
   checksum: 4fa18d8d8d977c55cb09715385c203197105e10a6d220087ec819f50cb68870f02942244f1017565484237f1f8c5d3cd413631b1ae104d3096f24fdfde1b4aa2
+  languageName: node
+  linkType: hard
+
+"urban@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "urban@npm:0.3.4"
+  dependencies:
+    commander: ">=0.3.0"
+  bin:
+    urban: bin/urban
+  checksum: ded2c36e68e9a5d6ddc57761842a7ac43c9d40803c106b616e0133c8969a71c6b8b4d3bce0bbd091c81ef6645e1b72ba07097035db9c83ff1e35076a47b00fb4
   languageName: node
   linkType: hard
 
