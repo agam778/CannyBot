@@ -12,12 +12,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (
-      text === '/ud' ||
-      text === `/ud@${ctx.me.username}` ||
-      text === '/urban' ||
-      text === `/urban@${ctx.me.username}`
-    ) {
+    if (!text.includes(' ')) {
       ctx.reply('Please specify a term to search for')
       return
     } else {

@@ -18,7 +18,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (text === '/search' || text === `/search@${ctx.me.username}`) {
+    if (!text.includes(' ')) {
       ctx.reply('Please specify a query to search for')
       return
     } else {

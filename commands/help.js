@@ -10,7 +10,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (text === '/help' || text === `/help@${ctx.me.username}`) {
+    if (!text.includes(' ')) {
       const commandFiles = fs
         .readdirSync(__dirname)
         .filter((file) => file.endsWith('.js'))
