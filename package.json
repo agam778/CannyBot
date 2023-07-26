@@ -20,7 +20,7 @@
     "randomstring": "^1.2.3",
     "urban": "^0.3.4"
   },
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.6.1",
   "devDependencies": {
     "@types/node": "^20.2.3"
   }
