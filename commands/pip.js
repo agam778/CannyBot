@@ -33,6 +33,7 @@ module.exports = {
         {
           reply_markup: buttons,
           parse_mode: 'HTML',
+          disable_web_page_preview: true,
         }
       )
     } catch (error) {
