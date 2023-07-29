@@ -4,6 +4,7 @@ const { InlineKeyboard } = require('grammy')
 module.exports = {
   name: 'steam',
   description: 'Get information about a Steam game',
+  alias: ['game'],
   usage: '/steam <game>',
   example: '/steam Counter-Strike: Global Offensive',
   category: 'Utilities',
