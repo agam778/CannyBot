@@ -1094,6 +1094,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"camelcase@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "camelcase@npm:4.1.0"
+  checksum: 9683356daf9b64fae4b30c91f8ceb1f34f22746e03d1804efdbe738357d38b47f206cdd71efcf2ed72018b2e88eeb8ec3f79adb09c02f1253a4b6d5d405ff2ae
+  languageName: node
+  linkType: hard
+
 "cannybot@workspace:.":
   version: 0.0.0-use.local
   resolution: "cannybot@workspace:."
@@ -1108,6 +1115,7 @@ __metadata:
     popcat-wrapper: ^1.5.5
     randomstring: ^1.2.3
     urban: ^0.3.4
+    wikipedia: ^2.1.0
   languageName: unknown
   linkType: soft
 
@@ -1428,6 +1436,15 @@ __metadata:
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
   checksum: 5144c0c9815e54ada181d80a0b810221a253562422e7c6c3a60b1901154184f49326ec239d618c416c1c5945a2e197107aee8d986a3dd836b53dffefd99b5e7e
+  languageName: node
+  linkType: hard
+
+"infobox-parser@npm:^3.6.2":
+  version: 3.6.2
+  resolution: "infobox-parser@npm:3.6.2"
+  dependencies:
+    camelcase: ^4.1.0
+  checksum: a09ab6d338631590f7d0ade0b7d3d179507ada170aa81f9b404b9df8fb2c780d95e8a79b027267381594bb575d3d69f39f1d9a8af0c5f6213d5b671877380d2f
   languageName: node
   linkType: hard
 
@@ -1963,5 +1980,15 @@ __metadata:
     tr46: ~0.0.3
     webidl-conversions: ^3.0.0
   checksum: b8daed4ad3356cc4899048a15b2c143a9aed0dfae1f611ebd55073310c7b910f522ad75d727346ad64203d7e6c79ef25eafd465f4d12775ca44b90fa82ed9e2c
+  languageName: node
+  linkType: hard
+
+"wikipedia@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "wikipedia@npm:2.1.0"
+  dependencies:
+    axios: ^1.4.0
+    infobox-parser: ^3.6.2
+  checksum: a14680e1b6146ac0b4bd8cdedc94169a00c3694156d281ae98e98851cc94b34d0564ae62916ddec9e648fef4b486cb2f31a8fa34b204d7b9ad33ddb970bcc01a
   languageName: node
   linkType: hard

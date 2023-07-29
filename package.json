@@ -19,7 +19,8 @@
     "grammy": "^1.16.1",
     "popcat-wrapper": "^1.5.5",
     "randomstring": "^1.2.3",
-    "urban": "^0.3.4"
+    "urban": "^0.3.4",
+    "wikipedia": "^2.1.0"
   },
   "packageManager": "yarn@3.6.1",
   "devDependencies": {
