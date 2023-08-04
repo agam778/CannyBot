@@ -24,13 +24,18 @@ module.exports = {
           return
         }
 
+        const definition = json.definition
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+        const example = json.example.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
         const keyboard = new InlineKeyboard()
           .url('View on Urban Dictionary', json.permalink)
           .row()
           .url('👍 ' + json.thumbs_up, json.permalink)
           .url('👎 ' + json.thumbs_down, json.permalink)
         ctx.reply(
-          `<b>${json.word}</b>\n\n${json.definition}\n\n<b>Example:</b>\n${json.example}`,
+          `<b>${json.word}</b>\n\n${definition}\n\n<b>Example:</b>\n${example}`,
           {
             parse_mode: 'HTML',
             reply_markup: keyboard,
