@@ -22,7 +22,7 @@
     "urban": "^0.3.4",
     "wikipedia": "^2.1.0"
   },
-  "packageManager": "yarn@3.6.1",
+  "packageManager": "yarn@3.6.3",
   "devDependencies": {
     "@types/node": "^20.2.3"
   }
