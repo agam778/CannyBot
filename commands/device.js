@@ -19,37 +19,45 @@ module.exports = {
     const deviceQuery = text.substring(text.indexOf(' ') + 1)
     const url = `https://raw.githubusercontent.com/ejbtrd/android_selected_certified_devices/main/devices.json`
 
-    try {
-      const data = await axios.get(url)
-      const responseData = data.data
+    const data = await axios.get(url)
+    const responseData = data.data
 
-      if (!responseData) {
-        await ctx.reply('Oops, something went wrong')
-        return
-      }
+    if (!responseData) {
+      await ctx.reply('Oops, something went wrong')
+      return
+    }
 
-      const result = responseData.filter(
-        (device) =>
-          device.name.toLowerCase().includes(deviceQuery.toLowerCase()) ||
-          device.codename.toLowerCase().includes(deviceQuery.toLowerCase()) ||
-          device.model.toLowerCase().includes(deviceQuery.toLowerCase())
-      )
-      if (result.length === 0) {
-        await ctx.reply('No device found')
-        return
-      }
+    const result = responseData.filter(
+      (device) =>
+        device.name.toLowerCase().includes(deviceQuery.toLowerCase()) ||
+        device.codename.toLowerCase().includes(deviceQuery.toLowerCase()) ||
+        device.model.toLowerCase().includes(deviceQuery.toLowerCase())
+    )
+    if (result.length === 0) {
+      await ctx.reply('No device found')
+      return
+    }
+    if (JSON.stringify(result).length > 2048) {
+      let reply = 'Too many devices found, please be more specific:\n\n'
 
-      let reply = 'Devices found for query `' + deviceQuery + '`:\n\n'
-
-      result.forEach((foundDevice) => {
+      result.slice(0, 10).forEach((foundDevice) => {
         reply += `${foundDevice.name}: \`${foundDevice.codename}\`\n`
       })
 
       await ctx.reply(reply, {
         parse_mode: 'Markdown',
       })
-    } catch (error) {
-      await ctx.reply('Oops, something went wrong\n\n' + ```${error}```)
+      return
     }
+
+    let reply = 'Devices found for query `' + deviceQuery + '`:\n\n'
+
+    result.forEach((foundDevice) => {
+      reply += `${foundDevice.name}: \`${foundDevice.codename}\`\n`
+    })
+
+    await ctx.reply(reply, {
+      parse_mode: 'Markdown',
+    })
   },
 }
