@@ -52,31 +52,35 @@ module.exports = {
     const ssurl = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASHKEY}&url=${url2}&width=1920&height=1080`
     const path = __dirname + `/../downloads/${randomchar}.png`
 
-    try {
-      const response = await axios({
-        method: 'get',
-        url: ssurl,
-        responseType: 'stream',
-      })
-      const writer = fs.createWriteStream(path)
-      response.data.pipe(writer)
+    const response = await axios({
+      method: 'get',
+      url: ssurl,
+      responseType: 'stream',
+    }).catch((err) => {
+      if (err.response.status === 404) {
+        ctx.reply('Failed to take screenshot.')
+        return
+      }
+    })
 
-      writer.on('finish', async () => {
-        await ctx.replyWithPhoto(new InputFile(path), {
-          caption:
-            "Here's your screenshot!" +
-            '\n' +
-            'Requested by @' +
-            ctx.from.username,
-        })
-        setTimeout(() => {
-          fs.unlinkSync(path)
-        }, 10000)
-      })
-    } catch (err) {
-      await ctx.reply(
-        'Oops! An error occurred.\n\nPossible reasons:\n• The website is not accessible\n• The website is not responding\n• Something else went wrong'
-      )
+    if (!response) {
+      return
     }
+
+    const writer = fs.createWriteStream(path)
+    response.data.pipe(writer)
+
+    writer.on('finish', async () => {
+      await ctx.replyWithPhoto(new InputFile(path), {
+        caption:
+          "Here's your screenshot!" +
+          '\n' +
+          'Requested by @' +
+          ctx.from.username,
+      })
+      setTimeout(() => {
+        fs.unlinkSync(path)
+      }, 10000)
+    })
   },
 }
