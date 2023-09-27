@@ -83,7 +83,6 @@ async function start() {
 
   bot.catch((err) => {
     const ctx = err.ctx
-    console.log(`Error while handling update ${ctx.update.update_id}:`)
     const e = err.error
     const commandText = ctx.message.text
     const chatTitle = ctx.chat.title
@@ -98,20 +97,20 @@ async function start() {
         parse_mode: 'HTML',
         chat_id: logchannel,
       })
-      ctx.reply('Error in request:', e.description)
+      ctx.reply('Oops, an error occurred!')
     } else if (e instanceof HttpError) {
       ctx.api.sendMessage(
         logchannel,
         `Could not contact Telegram:\n\n${errorMessage}`,
         { parse_mode: 'HTML', chat_id: logchannel }
       )
-      ctx.reply('Could not contact Telegram:', e)
+      ctx.reply('Could not contact Telegram:', e.description)
     } else {
       ctx.reply(`Oh no, an error occurred!\n\n${errorMessage}`, {
         parse_mode: 'HTML',
         chat_id: logchannel,
       })
-      ctx.reply('Oh no, an error occurred! 😢')
+      ctx.reply('Oops, an error occurred!')
     }
   })
 
