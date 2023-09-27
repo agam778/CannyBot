@@ -17,36 +17,33 @@ module.exports = {
     }
 
     const packageName = text.substring(5)
-    try {
-      const response = await axios.get(
-        `https://pypi.org/pypi/${packageName}/json`
-      )
-      const packageInfo = response.data.info
-
-      const buttons = new InlineKeyboard().url(
-        'View on PyPI',
-        `https://pypi.org/project/${packageName}`
-      )
-
-      await ctx.reply(
-        `<b>Package name:</b> <code>${packageInfo.name}</code>\n<b>Version:</b> <code>${packageInfo.version}</code>\n<b>Author:</b> <code>${packageInfo.author}</code>\n<b>Author email:</b> <code>${packageInfo.author_email}</code>\n<b>Home page:</b> ${packageInfo.home_page}\n<b>License:</b> <code>${packageInfo.license}</code>\n<b>Summary:</b> <code>${packageInfo.summary}</code>`,
-        {
-          reply_markup: buttons,
-          parse_mode: 'HTML',
-          disable_web_page_preview: true,
+    const response = await axios
+      .get(`https://pypi.org/pypi/${packageName}/json`)
+      .catch((err) => {
+        if (err.response.status === 404) {
+          ctx.reply('Package not found')
+          return
         }
-      )
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        await ctx.reply(`Package <code>${packageName}</code> not found`, {
-          parse_mode: 'HTML',
-        })
-      } else {
-        await ctx.reply(
-          `An error occurred while fetching package <code>${packageName}</code> information`,
-          { parse_mode: 'HTML' }
-        )
-      }
+      })
+
+    if (!response) {
+      return
     }
+
+    const packageInfo = response.data.info
+
+    const buttons = new InlineKeyboard().url(
+      'View on PyPI',
+      `https://pypi.org/project/${packageName}`
+    )
+
+    await ctx.reply(
+      `<b>Package name:</b> <code>${packageInfo.name}</code>\n<b>Version:</b> <code>${packageInfo.version}</code>\n<b>Author:</b> <code>${packageInfo.author}</code>\n<b>Author email:</b> <code>${packageInfo.author_email}</code>\n<b>Home page:</b> ${packageInfo.home_page}\n<b>License:</b> <code>${packageInfo.license}</code>\n<b>Summary:</b> <code>${packageInfo.summary}</code>`,
+      {
+        reply_markup: buttons,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true,
+      }
+    )
   },
 }
