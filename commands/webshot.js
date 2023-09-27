@@ -47,7 +47,7 @@ module.exports = {
       charset: 'alphabetic',
     })
 
-    const url = encodeURI(text.substring(9))
+    const url = encodeURI(text.substring(text.indexOf(' ') + 1))
     const url2 = escapeHtml(url)
     const ssurl = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASHKEY}&url=${url2}&width=1920&height=1080`
     const path = __dirname + `/../downloads/${randomchar}.png`
