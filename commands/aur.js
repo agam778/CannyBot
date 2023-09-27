@@ -19,39 +19,32 @@ module.exports = {
 
     const package = text.substring(text.indexOf(' ') + 1)
 
-    try {
-      const response = await axios.get(
-        `https://archlinux.org/packages/search/json/?q=${package}`
-      )
+    const response = await axios.get(
+      `https://archlinux.org/packages/search/json/?q=${package}`
+    )
 
-      const packageData = response.data.results.find(
-        (result) => result.pkgname === package
-      )
+    const packageData = response.data.results.find(
+      (result) => result.pkgname === package
+    )
 
-      if (packageData) {
-        await sendPackageInfo(ctx, packageData)
+    if (packageData) {
+      await sendPackageInfo(ctx, packageData)
+    } else {
+      const aurResponse = await axios.get(
+        `https://aur.archlinux.org/rpc/?v=5&type=search&arg=${package}`
+      )
+      const aurData = aurResponse.data.results[0]
+
+      if (aurData) {
+        await sendPackageInfo(ctx, aurData)
       } else {
-        const aurResponse = await axios.get(
-          `https://aur.archlinux.org/rpc/?v=5&type=search&arg=${package}`
+        await ctx.reply(
+          'Oops, an error occurred!\n\nPossible reasons:\n• Package not found\n• Rate limit exceeded'
         )
-        const aurData = aurResponse.data.results[0]
-
-        if (aurData) {
-          await sendPackageInfo(ctx, aurData)
-        } else {
-          await ctx.reply(
-            'Oops, an error occurred!\n\nPossible reasons:\n• Package not found\n• Rate limit exceeded'
-          )
-        }
       }
-    } catch (error) {
-      await ctx.reply(
-        'Oops, an error occurred!\n\nPossible reasons:\n• Package not found\n• Rate limit exceeded'
-      )
     }
   },
 }
-
 async function sendPackageInfo(ctx, packageData) {
   const pkgname = packageData.pkgname || packageData.Name
   const pkgdesc = packageData.pkgdesc || packageData.Description
