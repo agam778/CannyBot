@@ -25,40 +25,45 @@ module.exports = {
 
     const username = text.substring(8)
 
-    try {
-      const { data } = await axios.get(
-        `https://api.github.com/users/${username}`
-      )
-      const path = `${__dirname}/../downloads/${randomchar}.png`
-
-      const avatarResponse = await axios({
-        method: 'get',
-        url: data.avatar_url,
-        responseType: 'stream',
+    const response = await axios
+      .get(`https://api.github.com/users/${username}`)
+      .catch((err) => {
+        if (err.response.status === 404) {
+          ctx.reply('No user found')
+          return
+        }
       })
 
-      const writer = fs.createWriteStream(path)
-      avatarResponse.data.pipe(writer)
-
-      await new Promise((resolve, reject) => {
-        writer.on('finish', resolve)
-        writer.on('error', reject)
-      })
-
-      await ctx.replyWithPhoto(new InputFile(path), {
-        caption: `<b>Username:</b> <code>${data.login}</code>\n<b>Name:</b> ${data.name}\n<b>Location:</b> ${data.location}\n<b>Followers:</b> ${data.followers}\n<b>Following:</b> ${data.following}\n<b>Public Repos:</b> ${data.public_repos}\n<b>Public Gists:</b> ${data.public_gists}\n<b>Twitter:</b> ${data.twitter_username}\n<b>Website:</b> ${data.blog}`,
-        reply_markup: new InlineKeyboard().url('View on GitHub', data.html_url),
-        disable_web_page_preview: true,
-        parse_mode: 'HTML',
-      })
-
-      setTimeout(() => {
-        fs.unlinkSync(path)
-      }, 10000)
-    } catch (error) {
-      await ctx.reply(
-        'Oops, an error occurred!\n\nPossible reasons:\n• User not found\n• Rate limit exceeded'
-      )
+    if (!response) {
+      return
     }
+
+    const data = response.data
+    const path = `${__dirname}/../downloads/${randomchar}.png`
+
+    const avatarResponse = await axios({
+      method: 'get',
+      url: data.avatar_url,
+      responseType: 'stream',
+    })
+
+    const writer = fs.createWriteStream(path)
+    avatarResponse.data.pipe(writer)
+
+    await new Promise((resolve, reject) => {
+      writer.on('finish', resolve)
+      writer.on('error', reject)
+    })
+
+    await ctx.replyWithPhoto(new InputFile(path), {
+      caption: `<b>Username:</b> <code>${data.login}</code>\n<b>Name:</b> ${data.name}\n<b>Location:</b> ${data.location}\n<b>Followers:</b> ${data.followers}\n<b>Following:</b> ${data.following}\n<b>Public Repos:</b> ${data.public_repos}\n<b>Public Gists:</b> ${data.public_gists}\n<b>Twitter:</b> ${data.twitter_username}\n<b>Website:</b> ${data.blog}`,
+      reply_markup: new InlineKeyboard().url('View on GitHub', data.html_url),
+      disable_web_page_preview: true,
+      parse_mode: 'HTML',
+    })
+
+    setTimeout(() => {
+      fs.unlinkSync(path)
+    }, 10000)
   },
 }
