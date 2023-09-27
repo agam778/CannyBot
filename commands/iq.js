@@ -1,4 +1,18 @@
-const crypto = require('crypto')
+const fs = require('fs')
+
+let iqData = {}
+let iqDataFile = __dirname + '/../downloads/iqData.json'
+
+try {
+  if (!fs.existsSync(iqDataFile)) {
+    fs.writeFileSync(iqDataFile, '{}', 'utf-8')
+  }
+
+  const iqDataFileContents = fs.readFileSync(iqDataFile, 'utf-8')
+  iqData = JSON.parse(iqDataFileContents)
+} catch (error) {
+  console.error('Error loading IQ data:', error)
+}
 
 module.exports = {
   name: 'iq',
@@ -10,48 +24,43 @@ module.exports = {
     const { message } = ctx
     const { text, from } = message
 
-    const query = text.substring(text.indexOf(' ') + 1)
-    if (query === '') {
-      var firstname = from.first_name
-      var username = from.username
-    } else {
-      var firstname = query
-      var username = query
+    let username = text.substring(text.indexOf(' ') + 1)
+    if (
+      username.includes(
+        '/iq' || username.includes(`/iq@${ctx.botInfo.username}`)
+      )
+    ) {
+      username = from.id.toString()
     }
 
-    const iq = calculateIQ(firstname, username)
+    let iq = iqData[username]
+    if (iq === undefined) {
+      iq = Math.floor(Math.random() * 301) - 100
+      iqData[username] = iq
+
+      fs.writeFileSync(iqDataFile, JSON.stringify(iqData), 'utf-8')
+    }
 
     let response = ''
 
     if (!text.includes(' ')) {
       response = `<b>Your (${from.first_name})</b> IQ is ${iq}`
     } else {
-      response = `<b>${query}'s</b> IQ is ${iq}`
+      const username = text.substring(text.indexOf(' ') + 1)
+      response = `<b>${username}</b>'s IQ is ${iq}`
     }
 
-    if (iq < 80) {
-      response += '\n\nGuess they gotta get a new brain from AliExpress 🤡'
+    if (iq < 0) {
+      response += '\n\nbro got no brain frfr 💯💯'
+    } else if (iq < 80) {
+      response +=
+        '\n\nEh, consider getting a new brain from aliexpress or olx or something 👀'
     } else if (iq < 130) {
       response += "\n\nNot bad, but they're not a genius either 👎"
     } else {
-      response += '\n\nLooks like we have a nerd over here 🤓'
+      response += '\n\nHmm! Looks like we have a nerd over here 🤓'
     }
 
     await ctx.reply(response, { parse_mode: 'HTML' })
   },
-}
-
-function calculateIQ(firstname, username) {
-  const sha = crypto.createHash('sha1').update(firstname).digest('hex')
-  const md5 = crypto.createHash('md5').update(username).digest('hex')
-
-  const shaDigits = sha.match(/\d{2}/)[0]
-  const md5Digits = md5.match(/\d{2}/)[0]
-
-  const num1 = parseInt(shaDigits) + parseInt(md5Digits)
-  const num2 = Math.floor(Math.random() * 6)
-  const f = num1 - num2
-  let iq = 180 - f
-
-  return iq
 }
