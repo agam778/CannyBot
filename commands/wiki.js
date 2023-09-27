@@ -18,29 +18,25 @@ module.exports = {
 
     const query = text.substring(text.indexOf(' ') + 1)
 
-    try {
-      const page = await wiki.page(query)
+    const page = await wiki.page(query)
 
-      if (!page.title) {
-        await ctx.reply('Page not found on Wikipedia.')
-        return
-      }
-
-      const pageTitle = page.title
-      const pageUrl = page.fullurl
-
-      const pageSummary = await page.summary()
-      const pageExtract = pageSummary.extract
-
-      const keyboard = new InlineKeyboard()
-      keyboard.url('View on Wikipedia', pageUrl)
-
-      await ctx.reply(`<b>Wikipedia: ${pageTitle}</b>\n\n${pageExtract}`, {
-        parse_mode: 'HTML',
-        reply_markup: keyboard,
-      })
-    } catch (error) {
-      await ctx.reply('An error occurred while searching Wikipedia.')
+    if (!page.title) {
+      await ctx.reply('Page not found on Wikipedia.')
+      return
     }
+
+    const pageTitle = page.title
+    const pageUrl = page.fullurl
+
+    const pageSummary = await page.summary()
+    const pageExtract = pageSummary.extract
+
+    const keyboard = new InlineKeyboard()
+    keyboard.url('View on Wikipedia', pageUrl)
+
+    await ctx.reply(`<b>Wikipedia: ${pageTitle}</b>\n\n${pageExtract}`, {
+      parse_mode: 'HTML',
+      reply_markup: keyboard,
+    })
   },
 }
