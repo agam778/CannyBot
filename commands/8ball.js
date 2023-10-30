@@ -1,22 +1,18 @@
 const responses = [
-  'Fuck you, go away. Why do you think this piece of floating plastic has the answers you are looking for?',
   'Well, unfortunately, yes',
-  'Nah that can\'t be real',
-  'Nah bro istg',
   'HA HA HA HA HAAAA, yes',
-  'not you again..ugh',
   'Yes, that\'s for sure',
-  'Idts that\'s wrong',
-  'Get a life bro',
-  'Your mom said no',
-  'Fuck around and find out!',
-  'Only if you believe',
   'Provided no one notices, yes.',
   'Fuck yes',
   'SOMEHOW, yes.',
-  'Oh, that\'s awful! How can you even ask that? But yeah, depressingly.',
-  'Hell naw bro 💀💀💀💀💀💀💀💀💀💀💀💀',
-  'For real 👍',
+  'Yes, for real 👍',
+  'Nope',
+  'Your mom said no',
+  'My reply is no',
+  'My sources say no',
+  'Outlook not so good',
+  'Very doubtful',
+  'Ew, no'
 ]
 
 module.exports = {
