@@ -1122,6 +1122,7 @@ __metadata:
     fs: "npm:^0.0.1-security"
     grammy: "npm:^1.16.1"
     gsmarena-api: "npm:^2.0.5"
+    marked: "npm:^12.0.1"
     popcat-wrapper: "npm:^1.5.5"
     randomstring: "npm:^1.2.3"
     urban: "npm:^0.3.4"
@@ -1599,6 +1600,15 @@ __metadata:
   version: 2.5.1
   resolution: "kareem@npm:2.5.1"
   checksum: 30c6b9a39556d69108cac7cf7f87ca8c9f79d37ac58f2224e18d5e5b21191bbfbacee2070064f3c887bc00229d88b8bc728bcc98b07306edeaba85880f100b24
+  languageName: node
+  linkType: hard
+
+"marked@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "marked@npm:12.0.1"
+  bin:
+    marked: bin/marked.js
+  checksum: e5c2a4da12dc59351e3e8acd0ca36c11a49f9a538bd0c3bda2dc3c71868f168dd678907184308e6f458eafad0c14146d01841b0644b6ccfcab920c73b814f8d8
   languageName: node
   linkType: hard
 
