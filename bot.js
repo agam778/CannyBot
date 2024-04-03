@@ -41,7 +41,7 @@ function logCommand(ctx) {
 
 async function start() {
   const bot = new Bot(botToken)
-  bot.use(autoQuote)
+  bot.use(autoQuote())
 
   const blockedUserIds = process.env.BLOCK_ID
     ? process.env.BLOCK_ID.split(',').map((id) => id.trim())
