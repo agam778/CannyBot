@@ -11,12 +11,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a location')
       return
     }
 
-    const location = text.substring(text.indexOf(' ') + 1)
+    const location = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.OPENWEATHERMAP_API_KEY}&units=metric`
 
     const response = await axios.get(url).catch((err) => {
@@ -26,11 +26,9 @@ module.exports = {
       }
     })
 
-    if (!response) {
-      return
-    }
+    if (!response) return
 
-    const data = response.data
+    const { data } = response
 
     const { name, sys, weather, main, wind } = data
     const { country } = sys

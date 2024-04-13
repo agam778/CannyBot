@@ -11,12 +11,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a package name')
       return
     }
 
-    const packageName = text.substring(5)
+    const packageName = text.split(' ')[1]
     const response = await axios
       .get(`https://pypi.org/pypi/${packageName}/json`)
       .catch((err) => {
@@ -26,9 +26,7 @@ module.exports = {
         }
       })
 
-    if (!response) {
-      return
-    }
+    if (!response) return
 
     const packageInfo = response.data.info
 

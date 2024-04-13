@@ -12,12 +12,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a package name')
       return
     }
 
-    const package = text.substring(5)
+    const package = text.split(' ')[1]
 
     const response = await axios(
       `https://api.npms.io/v2/package/${package}`
@@ -28,9 +28,7 @@ module.exports = {
       }
     })
 
-    if (!response) {
-      return
-    }
+    if (!response) return
 
     const data = response.data.collected.metadata
 

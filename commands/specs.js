@@ -10,12 +10,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    const name = text.substring(text.indexOf(' ') + 1)
-
-    if (name == '/specs' || name == `/specs@${ctx.me.username}`) {
+    if (text.split(' ').length < 2) {
       ctx.reply('Please provide the name of the device!')
       return
     }
+
+    const name = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
 
     const searchresult = await gsmarena.search.search(name)
 

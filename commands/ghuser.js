@@ -13,7 +13,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a username')
       return
     }
@@ -23,7 +23,7 @@ module.exports = {
       charset: 'alphabetic',
     })
 
-    const username = text.substring(8)
+    const username = text.split(' ')[1]
 
     const response = await axios
       .get(`https://api.github.com/users/${username}`)
@@ -34,11 +34,9 @@ module.exports = {
         }
       })
 
-    if (!response) {
-      return
-    }
+    if (!response) return
 
-    const data = response.data
+    const { data } = response
     const path = `${__dirname}/../downloads/${randomchar}.png`
 
     const avatarResponse = await axios({

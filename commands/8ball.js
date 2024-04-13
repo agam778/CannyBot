@@ -1,7 +1,7 @@
 const responses = [
   'Well, unfortunately, yes',
   'HA HA HA HA HAAAA, yes',
-  'Yes, that\'s for sure',
+  "Yes, that's for sure",
   'Provided no one notices, yes.',
   'Fuck yes',
   'SOMEHOW, yes.',
@@ -12,7 +12,7 @@ const responses = [
   'My sources say no',
   'Outlook not so good',
   'Very doubtful',
-  'Ew, no'
+  'Ew, no',
 ]
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('At least ask a question...')
       return
     }

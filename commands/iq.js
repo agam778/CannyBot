@@ -24,14 +24,8 @@ module.exports = {
     const { message } = ctx
     const { text, from } = message
 
-    let username = text.substring(text.indexOf(' ') + 1)
-    if (
-      username.includes(
-        '/iq' || username.includes(`/iq@${ctx.botInfo.username}`)
-      )
-    ) {
-      username = from.id.toString()
-    }
+    let username = text.split(' ')[1]
+    if (username.includes('/iq')) username = from.id.toString()
 
     let iq = iqData[username]
     if (iq === undefined) {
@@ -43,7 +37,7 @@ module.exports = {
 
     let response = ''
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       response = `<b>Your (${from.first_name})</b> IQ is ${iq}`
     } else {
       const username = text.substring(text.indexOf(' ') + 1)

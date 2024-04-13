@@ -32,8 +32,14 @@ module.exports = {
   handler: async (ctx) => {
     const { message } = ctx
     const { text } = message
+    const regex = '^(https?|http)://.*$'
 
-    if (!text.includes('http')) {
+    if (text.split(' ').length < 2) {
+      ctx.reply('Please provide a link!')
+      return
+    }
+
+    if (!regex.test(text)) {
       await ctx.reply(
         'Please provide a valid URL starting with http:// or https://'
       )
@@ -47,7 +53,7 @@ module.exports = {
       charset: 'alphabetic',
     })
 
-    const url = encodeURI(text.substring(text.indexOf(' ') + 1))
+    const url = encodeURI(text.substring(text.indexOf(' ') + 1)) // The query can contain spaces, that's why no .split(' ')
     const url2 = escapeHtml(url)
     const ssurl = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASHKEY}&url=${url2}&width=1920&height=1080`
     const path = __dirname + `/../downloads/${randomchar}.png`
@@ -63,9 +69,7 @@ module.exports = {
       }
     })
 
-    if (!response) {
-      return
-    }
+    if (!response) return
 
     const writer = fs.createWriteStream(path)
     response.data.pipe(writer)

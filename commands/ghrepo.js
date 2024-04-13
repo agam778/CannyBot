@@ -11,12 +11,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a name for the repository')
       return
     }
 
-    const repo = text.substring(text.indexOf(' ') + 1)
+    const repo = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
 
     const response = await axios(
       `https://api.github.com/search/repositories?q=${repo}`

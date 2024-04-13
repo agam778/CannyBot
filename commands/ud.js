@@ -12,11 +12,11 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       ctx.reply('Please specify a term to search for')
       return
     } else {
-      const query = text.substring(text.indexOf(' ') + 1)
+      const query = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
       const result = urban(query)
       result.first((json) => {
         if (json === undefined) {

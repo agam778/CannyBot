@@ -17,11 +17,9 @@ module.exports = {
       return
     }
 
-    const input = text.substring(text.indexOf(' ') + 1)
-    const text1 = input.split(' | ')[0]
-    const text2 = input.split(' | ')[1]
+    const input = text.substring(text.indexOf(' ') + 1).split(' | ')
 
-    const image = await pop.drake(text1, text2)
+    const image = await pop.drake(input[0], input[1])
 
     await ctx.replyWithPhoto(image)
   },

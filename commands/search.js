@@ -18,11 +18,11 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       ctx.reply('Please specify a query to search for')
       return
     } else {
-      const query = escapeHtml(text.substring(text.indexOf(' ') + 1))
+      const query = escapeHtml(text.substring(text.indexOf(' ') + 1)) // The query can contain spaces, that's why no .split(' ')
       const keyboard = new InlineKeyboard()
         .url('Google', google + query)
         .url('Bing', bing + query)

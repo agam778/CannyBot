@@ -12,12 +12,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a game')
       return
     }
 
-    const game = text.substring(text.indexOf(' ') + 1)
+    const game = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
     const url = `https://api.steampowered.com/ISteamApps/GetAppList/v2/`
 
     const response = await axios.get(url).catch((err) => {

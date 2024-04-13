@@ -11,12 +11,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a device codename or name')
       return
     }
 
-    const deviceQuery = text.substring(text.indexOf(' ') + 1)
+    const deviceQuery = text.substring(text.indexOf(' ') + 1) // The query can contain spaces, that's why no .split(' ')
     const url = `https://raw.githubusercontent.com/ejbtrd/android_selected_certified_devices/main/devices.json`
 
     const data = await axios.get(url)

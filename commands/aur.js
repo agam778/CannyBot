@@ -12,12 +12,12 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       await ctx.reply('Please provide a package name')
       return
     }
 
-    const package = text.substring(text.indexOf(' ') + 1)
+    const package = text.split(' ')[1]
 
     const response = await axios.get(
       `https://archlinux.org/packages/search/json/?q=${package}`

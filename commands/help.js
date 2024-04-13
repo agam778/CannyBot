@@ -10,7 +10,7 @@ module.exports = {
     const { message } = ctx
     const { text } = message
 
-    if (!text.includes(' ')) {
+    if (text.split(' ').length < 2) {
       const commandFiles = fs
         .readdirSync(__dirname)
         .filter((file) => file.endsWith('.js'))
@@ -49,8 +49,8 @@ module.exports = {
       }
 
       await ctx.reply(output, { parse_mode: 'HTML' })
-    } else if (text.substring(text.indexOf(' ') + 1)) {
-      const command = text.substring(text.indexOf(' ') + 1)
+    } else {
+      const command = text.split(' ')[1]
       const commandFiles = fs
         .readdirSync(__dirname)
         .filter((file) => file.endsWith('.js'))
