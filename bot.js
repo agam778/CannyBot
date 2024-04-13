@@ -39,13 +39,29 @@ function logCommand(ctx) {
   }
 }
 
+// Command authorization middleware
+async function commandAuth(ctx, blockedUserIds, command) {
+  if (blockedUserIds.includes(ctx.from.id.toString())) {
+    await ctx.reply('Sorry, you are not allowed to use this bot.')
+    return false // Not authorized
+  }
+
+  logCommand(ctx)
+
+  if (command.ownercmd == true && ctx.from.id.toString() !== ownerId) {
+    await ctx.reply('Sorry, this command is only available to the owner.')
+    return false // Not authorized
+  }
+
+  return true // Authorized
+}
+
 async function start() {
   const bot = new Bot(botToken)
   bot.use(autoQuote())
 
-  const blockedUserIds = process.env.BLOCK_ID
-    ? process.env.BLOCK_ID.split(',').map((id) => id.trim())
-    : []
+  const blockedUserIds =
+    process.env.BLOCK_ID.split(',').map((id) => id.trim()) || []
 
   const commandFilesDir = path.resolve(__dirname, 'commands')
   const commandFiles = fs
@@ -54,35 +70,13 @@ async function start() {
 
   for (const file of commandFiles) {
     const command = require(path.join(commandFilesDir, file))
-    bot.command(command.name, async (ctx) => {
-      if (blockedUserIds.includes(ctx.from.id.toString())) {
-        await ctx.reply('Sorry, you are not allowed to use this bot.')
-        return
-      }
-      logCommand(ctx)
-      if (command.ownercmd == true && ctx.from.id.toString() !== ownerId) {
-        await ctx.reply('Sorry, this command is only available to the owner.')
-        return
-      }
-      await command.handler(ctx)
-    })
+    const verifyAuth = async (ctx) => commandAuth(ctx, blockedUserIds, command)
+
+    bot.command(command.name, verifyAuth, command.handler)
 
     if (command.alias) {
       for (const alias of command.alias) {
-        bot.command(alias, async (ctx) => {
-          if (blockedUserIds.includes(ctx.from.id.toString())) {
-            await ctx.reply('Sorry, you are not allowed to use this bot.')
-            return
-          }
-          logCommand(ctx)
-          if (command.ownercmd && ctx.from.id.toString() !== ownerId) {
-            await ctx.reply(
-              'Sorry, this command is only available to the owner.'
-            )
-            return
-          }
-          await command.handler(ctx)
-        })
+        bot.command(alias, verifyAuth, command.handler)
       }
     }
   }
