@@ -1839,12 +1839,12 @@ __metadata:
   linkType: hard
 
 "popcat-wrapper@npm:^1.5.5":
-  version: 1.5.5
-  resolution: "popcat-wrapper@npm:1.5.5"
+  version: 1.5.6
+  resolution: "popcat-wrapper@npm:1.5.6"
   dependencies:
     mongoose: "npm:^6.0.13"
     node-fetch: "npm:^2.6.1"
-  checksum: a3d92c0df924579689f233d4383b07eab14550ee287b4ee3de683da9bb8806e8fd5d5d5dad595c568937a3d8ff596737d4d6bb13e2ce9cde70e57d0ab92a5897
+  checksum: f8d026224677f67a4247389dda6c96937a28614412110dd2539241ad7e843a1065e18909dcb4f94a4f5e17672990c4268f9c9160459dc6bcc9ba92cb97d2ad22
   languageName: node
   linkType: hard
 
