@@ -18,7 +18,7 @@
     "fs": "^0.0.1-security",
     "grammy": "^1.16.1",
     "gsmarena-api": "^2.0.5",
-    "marked": "^13.0.0",
+    "marked": "^14.0.0",
     "popcat-wrapper": "^1.5.5",
     "randomstring": "^1.2.3",
     "urban": "^0.3.4",
