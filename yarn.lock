@@ -5,10 +5,10 @@ __metadata:
   version: 9
   cacheKey: 10c0
 
-"@grammyjs/types@npm:3.11.0":
-  version: 3.11.0
-  resolution: "@grammyjs/types@npm:3.11.0"
-  checksum: 10c0/9b168f1afef5fdf03cf6380927701832fe911985cd9a35fca320cf8a206ba836bfff16f97ddca767726b7e13a07d3f834b64eb0198f48117b3eec57cd0f1c75e
+"@grammyjs/types@npm:3.26.0":
+  version: 3.26.0
+  resolution: "@grammyjs/types@npm:3.26.0"
+  checksum: 10c0/511e63948a6fb245bac78b945d6314b807c3b331edcd31276e134cb4555778696d9bb752bf3501268a52ca88d754967a3acc5b06a838e00c9c0dd4860fd36684
   languageName: node
   linkType: hard
 
@@ -273,15 +273,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^4.3.4":
-  version: 4.3.4
-  resolution: "debug@npm:4.3.4"
+"debug@npm:^4.4.3":
+  version: 4.4.3
+  resolution: "debug@npm:4.4.3"
   dependencies:
-    ms: "npm:2.1.2"
+    ms: "npm:^2.1.3"
   peerDependenciesMeta:
     supports-color:
       optional: true
-  checksum: 10c0/cedbec45298dd5c501d01b92b119cd3faebe5438c3917ff11ae1bff86a6c722930ac9c8659792824013168ba6db7c4668225d845c633fbdafbbf902a6389f736
+  checksum: 10c0/d79136ec6c83ecbefd0f6a5593da6a9c91ec4d7ddc4b54c883d6e71ec9accb5f67a1a5e96d00a328196b5b5c86d365e98d8a3a70856aaf16b4e7b1985e67f5a6
   languageName: node
   linkType: hard
 
@@ -576,14 +576,14 @@ __metadata:
   linkType: hard
 
 "grammy@npm:^1.16.1":
-  version: 1.27.0
-  resolution: "grammy@npm:1.27.0"
+  version: 1.42.0
+  resolution: "grammy@npm:1.42.0"
   dependencies:
-    "@grammyjs/types": "npm:3.11.0"
+    "@grammyjs/types": "npm:3.26.0"
     abort-controller: "npm:^3.0.0"
-    debug: "npm:^4.3.4"
+    debug: "npm:^4.4.3"
     node-fetch: "npm:^2.7.0"
-  checksum: 10c0/6129cf44b7df721c0184e5acdb4cbea698c9fc8a5fe5b166ca42ecec2fe7666f86e3e3135a7c65bc0c84e7dc49cda211eee8f077e7f35f05809a648596895c57
+  checksum: 10c0/661a57b143cdabc8544e155c509a3e40ea671813c4796e09f38316aef841f230afe8e3f0145817f973bad18e8f853bf18ed2a93827ff0f1fc4f03fd5edb66255
   languageName: node
   linkType: hard
 
@@ -739,14 +739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ms@npm:2.1.2":
-  version: 2.1.2
-  resolution: "ms@npm:2.1.2"
-  checksum: 10c0/a437714e2f90dbf881b5191d35a6db792efbca5badf112f87b9e1c712aace4b4b9b742dd6537f3edf90fd6f684de897cec230abde57e87883766712ddda297cc
-  languageName: node
-  linkType: hard
-
-"ms@npm:2.1.3":
+"ms@npm:2.1.3, ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 10c0/d924b57e7312b3b63ad21fc5b3dc0af5e78d61a1fc7cfb5457edaf26326bf62be5307cc87ffb6862ef1c2b33b0233cdb5d4f01c4c958cc0d660948b65a287a48
