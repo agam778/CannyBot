@@ -156,7 +156,7 @@ __metadata:
     "@roziscoding/grammy-autoquote": "npm:^2.0.0"
     "@types/node": "npm:^24.0.0"
     axios: "npm:^1.4.0"
-    dotenv: "npm:^16.0.3"
+    dotenv: "npm:^17.0.0"
     express: "npm:^4.18.2"
     fs: "npm:^0.0.1-security"
     grammy: "npm:^1.16.1"
@@ -344,10 +344,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.3":
-  version: 16.6.1
-  resolution: "dotenv@npm:16.6.1"
-  checksum: 10c0/15ce56608326ea0d1d9414a5c8ee6dcf0fffc79d2c16422b4ac2268e7e2d76ff5a572d37ffe747c377de12005f14b3cc22361e79fc7f1061cce81f77d2c973dc
+"dotenv@npm:^17.0.0":
+  version: 17.4.2
+  resolution: "dotenv@npm:17.4.2"
+  checksum: 10c0/164f8e77a646c8446867d5b588d26ea6005c8ea7c5eb41cf926f6113d23f2191355f6e0cfd95ea9bab98394a5b0a3f1e51a8399711b666fe55cc7b0bd745f942
   languageName: node
   linkType: hard
 
