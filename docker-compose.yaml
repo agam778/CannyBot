@@ -5,4 +5,4 @@ services:
     restart: unless-stopped
     env_file: stack.env
     ports:
-      - '6767:8080' 
+      - '6769:8080' 
