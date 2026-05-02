@@ -6,7 +6,7 @@ module.exports = {
   description: 'Get info about a GitHub repository',
   usage: '/ghrepo <repo>',
   example: '/ghrepo RealmeInfoBot',
-  category: 'Git Utilities',
+  category: 'GitHub',
   handler: async (ctx) => {
     const { message } = ctx
     const { text } = message

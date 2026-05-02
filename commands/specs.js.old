@@ -6,6 +6,7 @@ module.exports = {
   description: 'Get the details of the mentioned device',
   usage: '/specs <device-name>',
   example: `/specs Pixel 8`,
+  category: 'Utilities',
   handler: async (ctx) => {
     const { message } = ctx
     const { text } = message

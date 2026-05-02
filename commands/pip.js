@@ -38,10 +38,24 @@ module.exports = {
     )
 
     await ctx.reply(
-      `<b>Package name:</b> <code>${packageInfo.name}</code>\n<b>Version:</b> <code>${packageInfo.version}</code>\n<b>Author:</b> <code>${packageInfo.author}</code>\n<b>Author email:</b> <code>${packageInfo.author_email}</code>\n<b>Home page:</b> ${packageInfo.home_page}\n<b>License:</b> <code>${packageInfo.license}</code>\n<b>Summary:</b> <code>${packageInfo.summary}</code>`,
+      '**Package name:** `' +
+        packageInfo.name +
+        '`\n**Version:** `' +
+        packageInfo.version +
+        '`\n**Author:** `' +
+        packageInfo.author +
+        '`\n**Author email:** `' +
+        packageInfo.author_email +
+        '`\n**Home page:** ' +
+        packageInfo.home_page +
+        '\n**License:** `' +
+        packageInfo.license +
+        '`\n**Summary:** `' +
+        packageInfo.summary +
+        '`',
       {
         reply_markup: buttons,
-        parse_mode: 'HTML',
+        parse_mode: 'Markdown',
         disable_web_page_preview: true,
       }
     )

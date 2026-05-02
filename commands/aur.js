@@ -56,7 +56,7 @@ async function sendPackageInfo(ctx, packageData) {
     `<b>Package:</b> <code>${pkgname}</code>\n<b>Description:</b> ${pkgdesc}\n<b>Version:</b> <code>${pkgver}</code>\n<b>Maintainer:</b> ${maintainers}\n<b>URL:</b> ${url}`,
     {
       parse_mode: 'HTML',
-      reply_markup: new InlineKeyboard().url('View on archlinux.org', url),
+      reply_markup: new InlineKeyboard().url('View package', url),
       disable_web_page_preview: true,
     }
   )

@@ -8,7 +8,7 @@ module.exports = {
   description: 'Get info about a GitHub user',
   usage: '/ghuser <username>',
   example: '/ghuser agam778',
-  category: 'Git Utilities',
+  category: 'GitHub',
   handler: async (ctx) => {
     const { message } = ctx
     const { text } = message
@@ -55,15 +55,15 @@ module.exports = {
       writer.on('error', reject)
     })
 
-    await ctx.replyWithPhoto(new InputFile(path), {
-      caption: `<b>Username:</b> <code>${data.login}</code>\n<b>Name:</b> ${data.name}\n<b>Location:</b> ${data.location}\n<b>Followers:</b> ${data.followers}\n<b>Following:</b> ${data.following}\n<b>Public Repos:</b> ${data.public_repos}\n<b>Public Gists:</b> ${data.public_gists}\n<b>Twitter:</b> ${data.twitter_username}\n<b>Website:</b> ${data.blog}`,
-      reply_markup: new InlineKeyboard().url('View on GitHub', data.html_url),
-      disable_web_page_preview: true,
-      parse_mode: 'HTML',
-    })
-
-    setTimeout(() => {
-      fs.unlinkSync(path)
-    }, 10000)
+    await ctx
+      .replyWithPhoto(new InputFile(path), {
+        caption: `<b>Username:</b> <code>${data.login}</code>\n<b>Name:</b> ${data.name}\n<b>Location:</b> ${data.location || 'Not specified'}\n<b>Followers:</b> ${data.followers}\n<b>Following:</b> ${data.following}\n<b>Public Repos:</b> ${data.public_repos}\n<b>Public Gists:</b> ${data.public_gists}\n<b>Twitter:</b> ${data.twitter_username || 'Not specified'}\n<b>Website:</b> ${data.blog || 'Not specified'}`,
+        reply_markup: new InlineKeyboard().url('View on GitHub', data.html_url),
+        disable_web_page_preview: true,
+        parse_mode: 'HTML',
+      })
+      .then(() => {
+        fs.unlinkSync(path)
+      })
   },
 }
