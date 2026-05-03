@@ -43,6 +43,12 @@ module.exports = {
             caption: `[Source](${url}) - Shared by [${ctx.from.first_name}](tg://user?id=${ctx.from.id})`,
             parse_mode: 'Markdown',
           })
+          .on('error', (err) => {
+            console.error('Error sending video:', err)
+            ctx.reply(
+              'Oops! an error occurred while sending the video!\n\nPossible reasons:\n• File size too big\n• Unsupported media type'
+            )
+          })
           .then(() => {
             fs.unlinkSync(output)
           })
