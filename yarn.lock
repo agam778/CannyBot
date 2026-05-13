@@ -1463,12 +1463,12 @@ __metadata:
   linkType: hard
 
 "wikipedia@npm:^2.1.0":
-  version: 2.4.2
-  resolution: "wikipedia@npm:2.4.2"
+  version: 2.5.0
+  resolution: "wikipedia@npm:2.5.0"
   dependencies:
     axios: "npm:^1.4.0"
     infobox-parser: "npm:^3.6.2"
-  checksum: 10c0/242a5b9078d8bbf792fd369e7eba9a77c344b94cf122255cdcdd695764f9a4dda1a25bb0372ed92407d9ba5aa808e26132a79f0da7fdd54635308e270606c339
+  checksum: 10c0/3285ac70bed6977403695e9793418d94d7ae14fc40268c67c4e18c0286729b9b81082aa96eb4e2c2c8ad7a1aec28ae47057f603ab818a61057943c6c17be104b
   languageName: node
   linkType: hard
 
