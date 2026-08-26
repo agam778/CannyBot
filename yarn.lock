@@ -5,10 +5,10 @@ __metadata:
   version: 9
   cacheKey: 10c0
 
-"@grammyjs/types@npm:3.26.0":
-  version: 3.26.0
-  resolution: "@grammyjs/types@npm:3.26.0"
-  checksum: 10c0/511e63948a6fb245bac78b945d6314b807c3b331edcd31276e134cb4555778696d9bb752bf3501268a52ca88d754967a3acc5b06a838e00c9c0dd4860fd36684
+"@grammyjs/types@npm:5.0.0":
+  version: 5.0.0
+  resolution: "@grammyjs/types@npm:5.0.0"
+  checksum: 10c0/235f473e9e2d2e1b0d41fa80ec125af79c6b7f27c2e19a0d52ba43c3231518d1fc1fc4f5200918356ba6aac695d36da030354db6fe8f4f9ef0cc7715125cde92
   languageName: node
   linkType: hard
 
@@ -696,14 +696,14 @@ __metadata:
   linkType: hard
 
 "grammy@npm:^1.16.1":
-  version: 1.42.0
-  resolution: "grammy@npm:1.42.0"
+  version: 1.46.0
+  resolution: "grammy@npm:1.46.0"
   dependencies:
-    "@grammyjs/types": "npm:3.26.0"
+    "@grammyjs/types": "npm:5.0.0"
     abort-controller: "npm:^3.0.0"
     debug: "npm:^4.4.3"
     node-fetch: "npm:^2.7.0"
-  checksum: 10c0/661a57b143cdabc8544e155c509a3e40ea671813c4796e09f38316aef841f230afe8e3f0145817f973bad18e8f853bf18ed2a93827ff0f1fc4f03fd5edb66255
+  checksum: 10c0/38d78fa9cab044bce8a8093c276b908f01515c7cbb1602995242ec5d2e5b2cbd2ce28b01b58660e8570e45c40288ed913cc5080e537033a6b321b986717d120b
   languageName: node
   linkType: hard
 
