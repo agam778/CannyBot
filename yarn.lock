@@ -1350,10 +1350,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyspawn@npm:~1.5.0":
-  version: 1.5.7
-  resolution: "tinyspawn@npm:1.5.7"
-  checksum: 10c0/3bcfeef7eff781de5e96745cd51d947f05a112ba85ad3b7e25bf8485334c13d95580cca3ea3a721a86b08c9d4730a32f705b4ebc03b521f66842c5dfb82dc1d1
+"tinyspawn@npm:~1.5.10":
+  version: 1.5.10
+  resolution: "tinyspawn@npm:1.5.10"
+  checksum: 10c0/fa032742fa719dc50b66724da39be3136c43537b2125c9f13a68e2c38166a54e6c1c2ef5fb11f3f61425841244dc9612280f1dd96403eb21c3ca5798efbd6fa2
   languageName: node
   linkType: hard
 
@@ -1473,14 +1473,14 @@ __metadata:
   linkType: hard
 
 "youtube-dl-exec@npm:^3.1.5":
-  version: 3.1.5
-  resolution: "youtube-dl-exec@npm:3.1.5"
+  version: 3.1.15
+  resolution: "youtube-dl-exec@npm:3.1.15"
   dependencies:
     binary-version-check: "npm:~6.1.0"
     dargs: "npm:~7.0.0"
     debug-logfmt: "npm:~1.4.0"
     is-unix: "npm:~2.0.10"
-    tinyspawn: "npm:~1.5.0"
-  checksum: 10c0/97ae3c6209ab80912996bb5f1d91ba5afbc96a4e54811e30f12aeb3a67fe8569cf248c1259e888c4747eee381d4eb76430bfbc0b7cd1f18300293603408cba59
+    tinyspawn: "npm:~1.5.10"
+  checksum: 10c0/f0df856f47d4fd470e1fcab157c0e6c06345b78a06307f8e02dc2be3fb8328301ba431ac7456aa5b50955f8b1629bc349f8d87107665abf9d9266647fab78cd8
   languageName: node
   linkType: hard
