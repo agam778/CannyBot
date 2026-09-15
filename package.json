@@ -14,7 +14,7 @@
     "@roziscoding/grammy-autoquote": "^2.0.0",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "express": "^5.0.0",
     "fs": "^0.0.1-security",
     "grammy": "^1.16.1",
     "gsmarena-api": "^2.0.5",
